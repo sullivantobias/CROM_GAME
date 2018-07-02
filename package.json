@@ -4,11 +4,11 @@
   "description": "",
   "private": true,
   "scripts": {
-    "build": "webpack --config webpack.prod.js",
+    "build": "webpack  --watch --config webpack.prod.js",
     "start": "webpack-dev-server --open --config webpack.dev.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Sullivan Tobias",
   "license": "ISC",
   "devDependencies": {
     "clean-webpack-plugin": "^0.1.19",
