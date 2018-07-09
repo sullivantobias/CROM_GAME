@@ -1,4 +1,8 @@
-import { createCanvas, ctx, canvas } from "./createCanvas.js";
+import version from "../../package.json";
+import { createCanvas, ctx, canvas } from "./createCanvas";
+import PlayScreen from "../screens/playScreen";
+import OptionsScreen from "../screens/optionsScreen";
+import { STATE } from "../const/const";
 
 /**
  * Play Button
@@ -28,10 +32,19 @@ let { x, y, width, height, text, backgroundColor } = playButton;
 
 let { xO, yO, widthO, heightO, textO, backgroundColorO } = optionButton;
 
-let state = "Menu";
-
 const createMenu = () => {
-  if (state === "Menu") {
+  if (STATE.getTitle() === "Menu") {
+    /**
+     * Retrieve Game Version
+     */
+
+      const gameVersion = "V " + version.version;
+
+      // Draw Version in canvas //
+      ctx.fillStyle = "red";
+      ctx.font = "15px Arial black";
+      ctx.fillText(gameVersion, 50, 50);
+
     /**
      * Menu
      */
@@ -61,10 +74,11 @@ const createMenu = () => {
     ctx.fillText(textO, xO + 50, yO + heightO / 2 + 5);
   }
 };
+createCanvas();
 createMenu();
 
 const changeColor = () => {
-  if (state === "Menu") {
+  if (STATE.getTitle() === "Menu") {
     /**
      * Click event
      */
@@ -88,7 +102,6 @@ const changeColor = () => {
         (e.clientY > yO && e.clientY < yO + (heightO + 14))
       ) {
         backgroundColorO = "red";
-        //console.log("Options");
       } else {
         backgroundColorO = "white";
       }
@@ -96,28 +109,30 @@ const changeColor = () => {
     });
   }
 };
+
 changeColor();
 
 const clickOnButtons = () => {
   canvas.addEventListener("click", e => {
     e.preventDefault();
-    if (
-      e.clientX > x &&
-      e.clientX < x + width + 14 &&
-      (e.clientY > y && e.clientY < y + (height + 14))
-    ) {
-      createCanvas();
-      state = "Ingame";
-    }
+    if (STATE.getTitle() === "Menu") {
+      if (
+        e.clientX > x &&
+        e.clientX < x + width + 14 &&
+        (e.clientY > y && e.clientY < y + (height + 14))
+      ) {
+        PlayScreen();
+      }
 
-    if (
-      e.clientX > xO &&
-      e.clientX < xO + widthO + 14 &&
-      (e.clientY > yO && e.clientY < yO + (heightO + 14))
-    ) {
-      createCanvas();
-      state = "Options";
+      if (
+        e.clientX > xO &&
+        e.clientX < xO + widthO + 14 &&
+        (e.clientY > yO && e.clientY < yO + (heightO + 14))
+      ) {
+        OptionsScreen();
+      }
     }
   });
 };
+
 clickOnButtons();
