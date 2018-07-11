@@ -1,35 +1,104 @@
 import { createCanvas, canvas, ctx } from "../createFunctions/createCanvas";
 import { STATE } from "../const/const";
+import { createButtons } from "../createFunctions/createButtonsForMenu";
+import { activateHovering } from "../designFunctions/activateHovering";
+import { choseMenu } from "../designFunctions/activateClickForMenu";
+import { createMenu } from "./mainMenu";
 
 /**
- * Options Button
+ * createCaracter Button
  */
-const playScreenButton = {
-  x: canvas.width / 2 - 100,
-  y: canvas.height / 2 - 25,
-  width: 220,
-  height: 50,
-  text: "Create Caracter",
-  backgroundColor: "white"
-};
 
-let { x, y, width, height, text, backgroundColor } = playScreenButton;
+const createCaracter = createButtons(
+  canvas.width / 2 - 100,
+  canvas.height / 2 - 100,
+  200,
+  50,
+  "Caracter",
+  "white"
+);
 
-const playScreen = () => {
+const cancel = createButtons(
+  canvas.width / 2 - 100,
+  canvas.height / 2 - 25,
+  200,
+  50,
+  "Cancel",
+  "white"
+);
+
+export const playScreen = () => {
   createCanvas();
   STATE.setTitle("Ingame");
 
-  /**Play */
-  ctx.fillStyle = backgroundColor;
-  ctx.fillRect(x, y, width, height);
+  if (STATE.getTitle() === "Ingame") {
+    /** Create Caracter */
+    ctx.fillStyle = createCaracter.backgroundColor;
+    ctx.fillRect(
+      createCaracter.x,
+      createCaracter.y,
+      createCaracter.width,
+      createCaracter.height
+    );
 
-  ctx.strokeStyle = "grey";
-  ctx.lineWidth = "7";
-  ctx.strokeRect(x, y, width, height);
+    ctx.strokeStyle = "grey";
+    ctx.lineWidth = "7";
+    ctx.strokeRect(
+      createCaracter.x,
+      createCaracter.y,
+      createCaracter.width,
+      createCaracter.height
+    );
 
-  ctx.fillStyle = "black";
-  ctx.font = "23px Arial Black";
-  ctx.fillText(text, x + 10, y + height / 2 + 5);
+    ctx.fillStyle = "black";
+    ctx.font = "23px Arial Black";
+    ctx.fillText(
+      createCaracter.text,
+      createCaracter.x + 10,
+      createCaracter.y + createCaracter.height / 2 + 5
+    );
+
+    /** Cancel */
+    ctx.fillStyle = cancel.backgroundColor;
+    ctx.fillRect(cancel.x, cancel.y, cancel.width, cancel.height);
+
+    ctx.strokeStyle = "grey";
+    ctx.lineWidth = "7";
+    ctx.strokeRect(cancel.x, cancel.y, cancel.width, cancel.height);
+
+    ctx.fillStyle = "black";
+    ctx.font = "23px Arial Black";
+    ctx.fillText(cancel.text, cancel.x + 10, cancel.y + cancel.height / 2 + 5);
+  }
 };
 
-export default playScreen;
+/**
+ * Call activateHovering() to change the color while hovering buttons
+ */
+
+activateHovering(createCaracter, cancel, () => {
+  /**
+   * If Statement to avoid calling reloadScreen in the prev Frame
+   */
+  if (STATE.getTitle() === "Ingame") playScreen();
+});
+
+/**
+ * Call choseMenu(),to trigger the click on the chosen button
+ */
+
+choseMenu(createCaracter, cancel, () => {
+  /**
+   * If Statement to avoid calling reloadScreen in the prev Frame
+   */
+  if (STATE.getTitle() === "Ingame") console.log("Go Ingame");
+  ;
+}, () => {
+  /**
+   * If Statement to avoid calling reloadScreen in the prev Frame
+   */
+  if (STATE.getTitle() === "Ingame"){
+    createMenu()
+  };
+  ;
+});
