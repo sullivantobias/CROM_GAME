@@ -21,8 +21,8 @@ Using ofc, new features offered by ES6.
 Just for the challenge, and i need to improve my JS skills, if in term i can only use Vanilla and not framework like jQuery, this will be great.
 
 I don't want to use things like Phaser, Pixi etc too.
-I'm a web developer after all. 
+I'm a web developer after all.
 
 I'm not a huge fan of jQuery, even if i admit it's good.
 
-# This Game is in development... (0.1.0) 
+# This Game is in development... (0.1.0)

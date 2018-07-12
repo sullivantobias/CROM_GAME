@@ -1,8 +1,5 @@
-
-
 // import { makeWarrior } from "./createCaracter";
-import './createFunctions/createMenu';
-
+import "./createFunctions/createMenu";
 
 /*
 

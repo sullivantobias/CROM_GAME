@@ -10,12 +10,12 @@ export const choseMenu = (button, button2, hrefButton, hrefButton2) => {
 
   canvas.addEventListener("click", e => {
     e.preventDefault();
-      if (coorButtons(e, button)) {
-       hrefButton();
-      }
+    if (coorButtons(e, button)) {
+      hrefButton();
+    }
 
-      if (coorButtons(e, button2)) {
-        hrefButton2();
-      }
+    if (coorButtons(e, button2)) {
+      hrefButton2();
+    }
   });
 };

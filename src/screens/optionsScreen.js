@@ -69,7 +69,6 @@ export const optionScreen = () => {
   ctx.fillText(cancel.text, cancel.x + 10, cancel.y + cancel.height / 2 + 5);
 };
 
-
 /**
  * Call activateHovering() to change the color while hovering buttons
  */
@@ -77,7 +76,6 @@ export const optionScreen = () => {
 activateHovering(resolution, cancel, () =>
   navigationMenu("Options", optionScreen, "Options")
 );
-
 
 /**
  * Call choseMenu(),to trigger the click on the chosen button
