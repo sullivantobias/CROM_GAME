@@ -5,7 +5,6 @@
   "private": true,
   "scripts": {
     "dev": "webpack  --watch --config webpack.dev.js"
-
   },
   "keywords": [
     "rpg",

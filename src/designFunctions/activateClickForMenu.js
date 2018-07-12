@@ -10,7 +10,6 @@ export const choseMenu = (button, button2, hrefButton, hrefButton2) => {
 
   canvas.addEventListener("click", e => {
     e.preventDefault();
-    if (STATE.getTitle() === "Menu" || STATE.getTitle() === "Ingame" ) {
       if (coorButtons(e, button)) {
        hrefButton();
       }
@@ -18,6 +17,5 @@ export const choseMenu = (button, button2, hrefButton, hrefButton2) => {
       if (coorButtons(e, button2)) {
         hrefButton2();
       }
-    }
   });
 };

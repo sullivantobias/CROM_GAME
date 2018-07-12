@@ -1,11 +1,9 @@
-import { STATE } from "../const/const";
 import { canvas } from "../createFunctions/createCanvas";
 import { coorButtons } from "../createFunctions/createButtonsForMenu";
 
 
 
 export const activateHovering = (button, button2, reloadActualMenu) => {
-  if (STATE.getTitle() === "Ingame") {
     /**
      * Hover event
      */
@@ -26,5 +24,4 @@ export const activateHovering = (button, button2, reloadActualMenu) => {
       }
       reloadActualMenu ? reloadActualMenu() : console.log("Missing Function Parameter");
     });
-  }
 };

@@ -1,6 +1,10 @@
-import { createCanvas, canvas, ctx } from "../createFunctions/createCanvas";
+import { canvas, ctx } from "../createFunctions/createCanvas";
 import { STATE } from "../const/const";
 import { createButtons } from "../createFunctions/createButtonsForMenu";
+import { activateHovering } from "../designFunctions/activateHovering";
+import { navigationMenu } from "./navigationMenu/navigationMenu";
+import { choseMenu } from "../designFunctions/activateClickForMenu";
+import { createMenu } from "./mainMenu";
 
 /**
  * Resolution Button
@@ -19,19 +23,18 @@ const resolution = createButtons(
  * Sound Button
  */
 
-const sound = createButtons(
+const cancel = createButtons(
   canvas.width / 2 - 100,
   canvas.height / 2 - 25,
   200,
   50,
-  "Sound",
+  "Cancel",
   "white"
 );
 
 export const optionScreen = () => {
-  createCanvas();
   STATE.setTitle("Options");
-  
+
   /** Create Caracter */
   ctx.fillStyle = resolution.backgroundColor;
   ctx.fillRect(resolution.x, resolution.y, resolution.width, resolution.height);
@@ -54,14 +57,35 @@ export const optionScreen = () => {
   );
 
   /** Cancel */
-  ctx.fillStyle = sound.backgroundColor;
-  ctx.fillRect(sound.x, sound.y, sound.width, sound.height);
+  ctx.fillStyle = cancel.backgroundColor;
+  ctx.fillRect(cancel.x, cancel.y, cancel.width, cancel.height);
 
   ctx.strokeStyle = "grey";
   ctx.lineWidth = "7";
-  ctx.strokeRect(sound.x, sound.y, sound.width, sound.height);
+  ctx.strokeRect(cancel.x, cancel.y, cancel.width, cancel.height);
 
   ctx.fillStyle = "black";
   ctx.font = "23px Arial Black";
-  ctx.fillText(sound.text, sound.x + 10, sound.y + sound.height / 2 + 5);
+  ctx.fillText(cancel.text, cancel.x + 10, cancel.y + cancel.height / 2 + 5);
 };
+
+
+/**
+ * Call activateHovering() to change the color while hovering buttons
+ */
+
+activateHovering(resolution, cancel, () =>
+  navigationMenu("Options", optionScreen, "Options")
+);
+
+
+/**
+ * Call choseMenu(),to trigger the click on the chosen button
+ */
+
+choseMenu(
+  resolution,
+  cancel,
+  () => navigationMenu("Options", optionScreen, "Options"), // just for the test
+  () => navigationMenu("Options", createMenu, "Menu")
+);
