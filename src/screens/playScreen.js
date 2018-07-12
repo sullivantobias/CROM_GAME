@@ -1,10 +1,11 @@
-import { canvas, ctx } from "../createFunctions/createCanvas";
+import { canvas, ctx, createCanvas } from "../createFunctions/createCanvas";
 import { STATE } from "../const/const";
 import { createButtons } from "../createFunctions/createButtonsForMenu";
 import { activateHovering } from "../designFunctions/activateHovering";
 import { choseMenu } from "../designFunctions/activateClickForMenu";
 import { createMenu } from "./mainMenu";
 import { navigationMenu } from "./navigationMenu/navigationMenu";
+import { choseCaracterScreen } from "./choseCaracterScreen";
 
 /**
  * createCaracter Button
@@ -29,6 +30,12 @@ const cancel = createButtons(
 );
 
 export const playScreen = () => {
+  /**
+   * remove old components
+   */
+  createCanvas();
+
+  /** Set State */
   STATE.setTitle("Ingame");
 
   /** Create Caracter */
@@ -85,6 +92,6 @@ activateHovering(createCaracter, cancel, () =>
 choseMenu(
   createCaracter,
   cancel,
-  () => navigationMenu("Ingame", playScreen, "Ingame"), // just for the test
+  () => navigationMenu("Ingame", choseCaracterScreen, "choseCaracter"), // just for the test
   () => navigationMenu("Ingame", createMenu, "Menu")
 );

@@ -4,84 +4,77 @@ import { createButtons } from "../createFunctions/createButtonsForMenu";
 import { activateHovering } from "../designFunctions/activateHovering";
 import { navigationMenu } from "./navigationMenu/navigationMenu";
 import { choseMenu } from "../designFunctions/activateClickForMenu";
-import { createMenu } from "./mainMenu";
-
 
 /**
- * Resolution Button
+ * Warrior
  */
 
-const resolution = createButtons(
+const warrior = createButtons(
   canvas.width / 2 - 100,
   canvas.height / 2 - 100,
   200,
   50,
-  "Resolution",
+  "Warrior",
   "white"
 );
 
 /**
- * Sound Button
+ * Mage
  */
 
-const cancel = createButtons(
+const mage = createButtons(
   canvas.width / 2 - 100,
   canvas.height / 2 - 25,
   200,
   50,
-  "Cancel",
+  "Mage",
   "white"
 );
 
-export const optionScreen = () => {
+export const choseCaracterScreen = () => {
   /**
    * remove old components
    */
   createCanvas();
 
   /** Set State */
-  STATE.setTitle("Options");
+  STATE.setTitle("choseCaracter");
 
   /** Create Caracter */
-  ctx.fillStyle = resolution.backgroundColor;
-  ctx.fillRect(resolution.x, resolution.y, resolution.width, resolution.height);
+  ctx.fillStyle = warrior.backgroundColor;
+  ctx.fillRect(warrior.x, warrior.y, warrior.width, warrior.height);
 
   ctx.strokeStyle = "grey";
   ctx.lineWidth = "7";
-  ctx.strokeRect(
-    resolution.x,
-    resolution.y,
-    resolution.width,
-    resolution.height
-  );
+  ctx.strokeRect(warrior.x, warrior.y, warrior.width, warrior.height);
 
   ctx.fillStyle = "black";
   ctx.font = "23px Arial Black";
   ctx.fillText(
-    resolution.text,
-    resolution.x + 10,
-    resolution.y + resolution.height / 2 + 5
+    warrior.text,
+    warrior.x + 10,
+    warrior.y + warrior.height / 2 + 5
   );
 
   /** Cancel */
-  ctx.fillStyle = cancel.backgroundColor;
-  ctx.fillRect(cancel.x, cancel.y, cancel.width, cancel.height);
+  ctx.fillStyle = mage.backgroundColor;
+  ctx.fillRect(mage.x, mage.y, mage.width, mage.height);
 
   ctx.strokeStyle = "grey";
   ctx.lineWidth = "7";
-  ctx.strokeRect(cancel.x, cancel.y, cancel.width, cancel.height);
+  ctx.strokeRect(mage.x, mage.y, mage.width, mage.height);
 
   ctx.fillStyle = "black";
   ctx.font = "23px Arial Black";
-  ctx.fillText(cancel.text, cancel.x + 10, cancel.y + cancel.height / 2 + 5);
+  ctx.fillText(mage.text, mage.x + 10, mage.y + mage.height / 2 + 5);
 };
 
 /**
  * Call activateHovering() to change the color while hovering buttons
  */
 
-activateHovering(resolution, cancel, () =>
-  navigationMenu("Options", optionScreen, "Options")
+activateHovering(warrior, mage, () =>
+  navigationMenu("choseCaracter", choseCaracterScreen, "choseCaracter")
 );
 
 /**
@@ -89,8 +82,8 @@ activateHovering(resolution, cancel, () =>
  */
 
 choseMenu(
-  resolution,
-  cancel,
-  () => navigationMenu("Options", optionScreen, "Options"), // just for the test
-  () => navigationMenu("Options", createMenu, "Menu")
+  warrior,
+  mage,
+  () => navigationMenu("choseCaracter", choseCaracterScreen, "warriorScreen"), // just for the test
+  () => navigationMenu("choseCaracter", choseCaracterScreen, "mageScreen")
 );
