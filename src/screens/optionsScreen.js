@@ -76,21 +76,32 @@ export const optionScreen = () => {
   ctx.fillText(cancel.text, cancel.x + 10, cancel.y + cancel.height / 2 + 5);
 };
 
-/**
- * Call activateHovering() to change the color while hovering buttons
- */
+ /**
+   * Activate Hovering
+   */
 
-activateHovering(resolution, cancel, () =>
-  navigationMenu("Options", optionScreen, "Options")
-);
+  activateHovering(
+    () => {
+      navigationMenu("Options", optionScreen, "Options");
+    },
+    resolution,
+    cancel
+  );
 
-/**
- * Call choseMenu(),to trigger the click on the chosen button
- */
+  /**
+   * Activate Click
+   */
 
-choseMenu(
-  resolution,
-  cancel,
-  () => navigationMenu("Options", optionScreen, "Options"), // just for the test
-  () => navigationMenu("Options", createMenu, "Menu")
-);
+  choseMenu(
+    () => {
+      navigationMenu("Options", createMenu, "Menu");
+    },
+    cancel
+  );
+
+  choseMenu(
+    () => {
+      navigationMenu("Options", optionScreen, "Options");
+    },
+    resolution
+  );

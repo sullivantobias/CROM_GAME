@@ -4,6 +4,7 @@ import { createButtons } from "../createFunctions/createButtonsForMenu";
 import { activateHovering } from "../designFunctions/activateHovering";
 import { navigationMenu } from "./navigationMenu/navigationMenu";
 import { choseMenu } from "../designFunctions/activateClickForMenu";
+import { playScreen } from "./playScreen";
 
 /**
  * Warrior
@@ -31,6 +32,19 @@ const mage = createButtons(
   "white"
 );
 
+/**
+ * Mage
+ */
+
+const cancel = createButtons(
+  canvas.width / 2 - 100,
+  canvas.height / 2 + 50,
+  200,
+  50,
+  "Cancel",
+  "white"
+);
+
 export const choseCaracterScreen = () => {
   /**
    * remove old components
@@ -40,7 +54,7 @@ export const choseCaracterScreen = () => {
   /** Set State */
   STATE.setTitle("choseCaracter");
 
-  /** Create Caracter */
+  /** Warrior */
   ctx.fillStyle = warrior.backgroundColor;
   ctx.fillRect(warrior.x, warrior.y, warrior.width, warrior.height);
 
@@ -56,7 +70,7 @@ export const choseCaracterScreen = () => {
     warrior.y + warrior.height / 2 + 5
   );
 
-  /** Cancel */
+  /** Mage */
   ctx.fillStyle = mage.backgroundColor;
   ctx.fillRect(mage.x, mage.y, mage.width, mage.height);
 
@@ -67,23 +81,45 @@ export const choseCaracterScreen = () => {
   ctx.fillStyle = "black";
   ctx.font = "23px Arial Black";
   ctx.fillText(mage.text, mage.x + 10, mage.y + mage.height / 2 + 5);
+
+  /** Cancel */
+  ctx.fillStyle = cancel.backgroundColor;
+  ctx.fillRect(cancel.x, cancel.y, cancel.width, cancel.height);
+
+  ctx.strokeStyle = "grey";
+  ctx.lineWidth = "7";
+  ctx.strokeRect(cancel.x, cancel.y, cancel.width, cancel.height);
+
+  ctx.fillStyle = "black";
+  ctx.font = "23px Arial Black";
+  ctx.fillText(cancel.text, cancel.x + 10, cancel.y + cancel.height / 2 + 5);
 };
 
 /**
- * Call activateHovering() to change the color while hovering buttons
+ * Activate Hovering
  */
 
-activateHovering(warrior, mage, () =>
-  navigationMenu("choseCaracter", choseCaracterScreen, "choseCaracter")
+activateHovering(
+  () => {
+    navigationMenu("choseCaracter", choseCaracterScreen, "choseCaracter");
+  },
+  warrior,
+  mage,
+  cancel
 );
 
 /**
- * Call choseMenu(),to trigger the click on the chosen button
+ * Activate Click
  */
 
-choseMenu(
-  warrior,
-  mage,
-  () => navigationMenu("choseCaracter", choseCaracterScreen, "warriorScreen"), // just for the test
-  () => navigationMenu("choseCaracter", choseCaracterScreen, "mageScreen")
-);
+choseMenu(() => {
+  navigationMenu("choseCaracter", choseCaracterScreen, "choseCaracter");
+}, warrior);
+
+choseMenu(() => {
+  navigationMenu("choseCaracter", choseCaracterScreen, "choseCaracter");
+}, mage);
+
+choseMenu(() => {
+  navigationMenu("choseCaracter", playScreen, "Ingame");
+}, cancel);

@@ -78,20 +78,31 @@ export const playScreen = () => {
 };
 
 /**
- * Call activateHovering() to change the color while hovering buttons
- */
+   * Activate Hovering
+   */
 
-activateHovering(createCaracter, cancel, () =>
-  navigationMenu("Ingame", playScreen, "Ingame")
-);
+  activateHovering(
+    () => {
+      navigationMenu("Ingame", playScreen, "Ingame");
+    },
+    createCaracter,
+    cancel
+  );
 
-/**
- * Call choseMenu(),to trigger the click on the chosen button
- */
+  /**
+   * Activate Click
+   */
 
-choseMenu(
-  createCaracter,
-  cancel,
-  () => navigationMenu("Ingame", choseCaracterScreen, "choseCaracter"), // just for the test
-  () => navigationMenu("Ingame", createMenu, "Menu")
-);
+  choseMenu(
+    () => {
+      navigationMenu("Ingame", choseCaracterScreen, "choseCaracter");
+    },
+    createCaracter
+  );
+
+  choseMenu(
+    () => {
+      navigationMenu("Ingame", createMenu, "Menu");
+    },
+    cancel
+  );
