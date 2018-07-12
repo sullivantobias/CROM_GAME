@@ -1,3 +1,5 @@
+import { ctx } from "./createCanvas";
+
 /**
  *
  * @param {*} x
@@ -29,4 +31,24 @@ export const coorButtons = (e, object) => {
     e.clientX < object.x + object.width + 14 &&
     (e.clientY > object.y && e.clientY < object.y + (object.height + 14))
   );
+};
+
+export const drawButtons = (...button) => {
+  for (let i = 0; i < button.length; i++) {
+    /** button to create */
+    ctx.fillStyle = button[i].backgroundColor;
+    ctx.fillRect(button[i].x, button[i].y, button[i].width, button[i].height);
+
+    ctx.strokeStyle = "grey";
+    ctx.lineWidth = "7";
+    ctx.strokeRect(button[i].x, button[i].y, button[i].width, button[i].height);
+
+    ctx.fillStyle = "black";
+    ctx.font = "23px Arial Black";
+    ctx.fillText(
+      button[i].text,
+      button[i].x + 10,
+      button[i].y + button[i].height / 2 + 5
+    );
+  }
 };

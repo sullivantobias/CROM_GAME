@@ -1,27 +1,26 @@
 import { canvas } from "../createFunctions/createCanvas";
 import { coorButtons } from "../createFunctions/createButtonsForMenu";
 
-export const activateHovering = (button, button2, reloadActualMenu) => {
+export const activateHovering = (reloadActualMenu, ...button) => {
   /**
    * Hover event
    */
+  if (button.length) {
+    canvas.addEventListener("mousemove", e => {
+      e.preventDefault();
 
-  canvas.addEventListener("mousemove", e => {
-    e.preventDefault();
-    if (coorButtons(e, button)) {
-      button.backgroundColor = "red";
-      //console.log("Play");
-    } else {
-      button.backgroundColor = "white";
-    }
+      for (let i = 0; i < button.length; i++) {
+        if (coorButtons(e, button[i])) {
+          button[i].backgroundColor = "red";
+          //console.log("Play");
+        } else {
+          button[i].backgroundColor = "white";
+        }
+      }
 
-    if (coorButtons(e, button2)) {
-      button2.backgroundColor = "red";
-    } else {
-      button2.backgroundColor = "white";
-    }
-    reloadActualMenu
-      ? reloadActualMenu()
-      : console.log("Missing Function Parameter");
-  });
+      reloadActualMenu
+        ? reloadActualMenu()
+        : console.log("Missing Function Parameter");
+    });
+  }
 };

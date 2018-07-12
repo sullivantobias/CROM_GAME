@@ -6,6 +6,7 @@ import { activateHovering } from "../designFunctions/activateHovering";
 import { playScreen } from "../screens/playScreen";
 import { optionScreen } from "../screens/optionsScreen";
 import { createMenu, playButton, optionButton } from "../screens/mainMenu";
+import { navigationMenu } from "../screens/navigationMenu/navigationMenu";
 
 if (STATE.getTitle() === "Menu") {
   /**
@@ -19,29 +20,32 @@ if (STATE.getTitle() === "Menu") {
   if (STATE.getTitle() === "Menu") createMenu();
 
   /**
-   * Call activateHovering() to change the color while hovering buttons
+   * Activate Hovering
    */
-  activateHovering(playButton, optionButton, () => {
-    /**
-     * If Statement to avoid calling reloadScreen in the prev or next Frame
-     */
-    if (STATE.getTitle() === "Menu") createMenu();
-  });
+
+  activateHovering(
+    () => {
+      navigationMenu("Menu", createMenu, "Menu");
+    },
+    playButton,
+    optionButton
+  );
 
   /**
-   * Call choseMenu(),to trigger the click on the chosen button
+   * Activate Click
    */
+
   choseMenu(
-    playButton,
-    optionButton,
     () => {
-      /**
-       * If Statement to avoid calling reloadScreen in the prev or next Frame
-       */
-      if (STATE.getTitle() === "Menu") playScreen();
+      navigationMenu("Menu", playScreen, "Ingame");
     },
+    playButton
+  );
+
+  choseMenu(
     () => {
-      if (STATE.getTitle() === "Menu") optionScreen();
-    }
+      navigationMenu("Menu", optionScreen, "Options");
+    },
+    optionButton
   );
 }

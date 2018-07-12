@@ -1,11 +1,13 @@
 import { canvas, ctx, createCanvas } from "../createFunctions/createCanvas";
 import { STATE } from "../const/const";
-import { createButtons } from "../createFunctions/createButtonsForMenu";
+import {
+  createButtons,
+  drawButtons
+} from "../createFunctions/createButtonsForMenu";
 import { activateHovering } from "../designFunctions/activateHovering";
 import { navigationMenu } from "./navigationMenu/navigationMenu";
 import { choseMenu } from "../designFunctions/activateClickForMenu";
 import { createMenu } from "./mainMenu";
-
 
 /**
  * Resolution Button
@@ -42,55 +44,30 @@ export const optionScreen = () => {
   /** Set State */
   STATE.setTitle("Options");
 
-  /** Create Caracter */
-  ctx.fillStyle = resolution.backgroundColor;
-  ctx.fillRect(resolution.x, resolution.y, resolution.width, resolution.height);
-
-  ctx.strokeStyle = "grey";
-  ctx.lineWidth = "7";
-  ctx.strokeRect(
-    resolution.x,
-    resolution.y,
-    resolution.width,
-    resolution.height
-  );
-
-  ctx.fillStyle = "black";
-  ctx.font = "23px Arial Black";
-  ctx.fillText(
-    resolution.text,
-    resolution.x + 10,
-    resolution.y + resolution.height / 2 + 5
-  );
-
-  /** Cancel */
-  ctx.fillStyle = cancel.backgroundColor;
-  ctx.fillRect(cancel.x, cancel.y, cancel.width, cancel.height);
-
-  ctx.strokeStyle = "grey";
-  ctx.lineWidth = "7";
-  ctx.strokeRect(cancel.x, cancel.y, cancel.width, cancel.height);
-
-  ctx.fillStyle = "black";
-  ctx.font = "23px Arial Black";
-  ctx.fillText(cancel.text, cancel.x + 10, cancel.y + cancel.height / 2 + 5);
+  /** Draw Buttons */
+  drawButtons(resolution, cancel);
 };
 
 /**
- * Call activateHovering() to change the color while hovering buttons
+ * Activate Hovering
  */
 
-activateHovering(resolution, cancel, () =>
-  navigationMenu("Options", optionScreen, "Options")
+activateHovering(
+  () => {
+    navigationMenu("Options", optionScreen, "Options");
+  },
+  resolution,
+  cancel
 );
 
 /**
- * Call choseMenu(),to trigger the click on the chosen button
+ * Activate Click
  */
 
-choseMenu(
-  resolution,
-  cancel,
-  () => navigationMenu("Options", optionScreen, "Options"), // just for the test
-  () => navigationMenu("Options", createMenu, "Menu")
-);
+choseMenu(() => {
+  navigationMenu("Options", createMenu, "Menu");
+}, cancel);
+
+choseMenu(() => {
+  navigationMenu("Options", optionScreen, "Options");
+}, resolution);
