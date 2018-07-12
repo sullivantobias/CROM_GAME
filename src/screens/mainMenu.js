@@ -1,8 +1,10 @@
 import { canvas, ctx } from "../createFunctions/createCanvas";
-import { createButtons } from "../createFunctions/createButtonsForMenu";
+import {
+  createButtons,
+  drawButtons
+} from "../createFunctions/createButtonsForMenu";
 
 import version from "../../package.json";
-import { STATE } from "../const/const";
 
 /**
  * Play Button
@@ -39,50 +41,6 @@ export const createMenu = () => {
   ctx.font = "15px Arial black";
   ctx.fillText(gameVersion, 50, 50);
 
-  /**Play */
-  ctx.fillStyle = playButton.backgroundColor;
-  ctx.fillRect(playButton.x, playButton.y, playButton.width, playButton.height);
-
-  ctx.strokeStyle = "grey";
-  ctx.lineWidth = "7";
-  ctx.strokeRect(
-    playButton.x,
-    playButton.y,
-    playButton.width,
-    playButton.height
-  );
-
-  ctx.fillStyle = "black";
-  ctx.font = "23px Arial Black";
-  ctx.fillText(
-    playButton.text,
-    playButton.x + 10,
-    playButton.y + playButton.height / 2 + 5
-  );
-
-  /**Options */
-  ctx.fillStyle = optionButton.backgroundColor;
-  ctx.fillRect(
-    optionButton.x,
-    optionButton.y,
-    optionButton.width,
-    optionButton.height
-  );
-
-  ctx.strokeStyle = "grey";
-  ctx.lineWidth = "7";
-  ctx.strokeRect(
-    optionButton.x,
-    optionButton.y,
-    optionButton.width,
-    optionButton.height
-  );
-
-  ctx.fillStyle = "black";
-  ctx.font = "23px Arial Black";
-  ctx.fillText(
-    optionButton.text,
-    optionButton.x + 50,
-    optionButton.y + optionButton.height / 2 + 5
-  );
+  /** Draw button */
+  drawButtons(playButton, optionButton);
 };
