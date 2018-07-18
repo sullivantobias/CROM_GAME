@@ -1,25 +1,25 @@
-import { canvas, ctx, createCanvas } from "../createFunctions/createCanvas";
-import { STATE } from "../const/const";
+import {canvas, createCanvas} from '../createFunctions/createCanvas';
+import {STATE} from '../const/const';
 import {
-  createButtons,
-  drawButtons
-} from "../createFunctions/createButtonsForMenu";
-import { activateHovering } from "../designFunctions/activateHovering";
-import { navigationMenu } from "./navigationMenu/navigationMenu";
-import { choseMenu } from "../designFunctions/activateClickForMenu";
-import { createMenu } from "./mainMenu";
+   createButtons,
+   drawButtons,
+} from '../createFunctions/createButtonsForMenu';
+import {activateHovering} from '../designFunctions/activateHovering';
+import {navigationMenu} from './navigationMenu/navigationMenu';
+import {choseMenu} from '../designFunctions/activateClickForMenu';
+import {createMenu} from './mainMenu';
 
 /**
  * Resolution Button
  */
 
 const resolution = createButtons(
-  canvas.width / 2 - 100,
-  canvas.height / 2 - 100,
-  200,
-  50,
-  "Resolution",
-  "white"
+   canvas.width / 2 - 100,
+   canvas.height / 2 - 100,
+   200,
+   50,
+   'Resolution',
+   'white'
 );
 
 /**
@@ -27,25 +27,25 @@ const resolution = createButtons(
  */
 
 const cancel = createButtons(
-  canvas.width / 2 - 100,
-  canvas.height / 2 - 25,
-  200,
-  50,
-  "Cancel",
-  "white"
+   canvas.width / 2 - 100,
+   canvas.height / 2 - 25,
+   200,
+   50,
+   'Cancel',
+   'white'
 );
 
 export const optionScreen = () => {
-  /**
-   * remove old components
-   */
-  createCanvas();
+   /**
+    * remove old components
+    */
+   createCanvas();
 
-  /** Set State */
-  STATE.setTitle("Options");
+   /** Set State */
+   STATE.setTitle('Options');
 
-  /** Draw Buttons */
-  drawButtons(resolution, cancel);
+   /** Draw Buttons */
+   drawButtons(resolution, cancel);
 };
 
 /**
@@ -53,11 +53,11 @@ export const optionScreen = () => {
  */
 
 activateHovering(
-  () => {
-    navigationMenu("Options", optionScreen, "Options");
-  },
-  resolution,
-  cancel
+   () => {
+      navigationMenu('Options', optionScreen, 'Options');
+   },
+   resolution,
+   cancel
 );
 
 /**
@@ -65,9 +65,9 @@ activateHovering(
  */
 
 choseMenu(() => {
-  navigationMenu("Options", createMenu, "Menu");
+   navigationMenu('Options', createMenu, 'Menu');
 }, cancel);
 
 choseMenu(() => {
-  navigationMenu("Options", optionScreen, "Options");
+   navigationMenu('Options', optionScreen, 'Options');
 }, resolution);

@@ -1,11 +1,11 @@
-import { Warrior } from "./warrior.js";
+import {Warrior} from './warrior.js';
 
 export const makeWarrior = () => {
-  const oneWarrior = new Warrior();
+   const oneWarrior = new Warrior();
 
-  let { warriorLife, warriorProt } = oneWarrior;
-  const warriorresume = `Warrior Created |
+   let {warriorLife, warriorProt} = oneWarrior;
+   const warriorresume = `Warrior Created |
   Life : ${warriorLife} / Prot : ${warriorProt}
   `;
-  document.querySelector("#resume").innerHTML = warriorresume;
+   document.querySelector('#resume').innerHTML = warriorresume;
 };

@@ -1,25 +1,25 @@
-import { canvas, ctx, createCanvas } from "../createFunctions/createCanvas";
-import { STATE } from "../const/const";
+import {canvas, createCanvas} from '../createFunctions/createCanvas';
+import {STATE} from '../const/const';
 import {
-  createButtons,
-  drawButtons
-} from "../createFunctions/createButtonsForMenu";
-import { activateHovering } from "../designFunctions/activateHovering";
-import { navigationMenu } from "./navigationMenu/navigationMenu";
-import { choseMenu } from "../designFunctions/activateClickForMenu";
-import { playScreen } from "./playScreen";
+   createButtons,
+   drawButtons,
+} from '../createFunctions/createButtonsForMenu';
+import {activateHovering} from '../designFunctions/activateHovering';
+import {navigationMenu} from './navigationMenu/navigationMenu';
+import {choseMenu} from '../designFunctions/activateClickForMenu';
+import {playScreen} from './playScreen';
 
 /**
  * Warrior
  */
 
 const warrior = createButtons(
-  canvas.width / 2 - 100,
-  canvas.height / 2 - 100,
-  200,
-  50,
-  "Warrior",
-  "white"
+   canvas.width / 2 - 100,
+   canvas.height / 2 - 100,
+   200,
+   50,
+   'Warrior',
+   'white'
 );
 
 /**
@@ -27,12 +27,12 @@ const warrior = createButtons(
  */
 
 const mage = createButtons(
-  canvas.width / 2 - 100,
-  canvas.height / 2 - 25,
-  200,
-  50,
-  "Mage",
-  "white"
+   canvas.width / 2 - 100,
+   canvas.height / 2 - 25,
+   200,
+   50,
+   'Mage',
+   'white'
 );
 
 /**
@@ -40,24 +40,24 @@ const mage = createButtons(
  */
 
 const cancel = createButtons(
-  canvas.width / 2 - 100,
-  canvas.height / 2 + 50,
-  200,
-  50,
-  "Cancel",
-  "white"
+   canvas.width / 2 - 100,
+   canvas.height / 2 + 50,
+   200,
+   50,
+   'Cancel',
+   'white'
 );
 
 export const choseCaracterScreen = () => {
-  /**
-   * remove old components
-   */
-  createCanvas();
+   /**
+    * remove old components
+    */
+   createCanvas();
 
-  /** Set State */
-  STATE.setTitle("choseCaracter");
+   /** Set State */
+   STATE.setTitle('choseCaracter');
 
-  drawButtons(warrior, mage, cancel);
+   drawButtons(warrior, mage, cancel);
 };
 
 /**
@@ -65,12 +65,12 @@ export const choseCaracterScreen = () => {
  */
 
 activateHovering(
-  () => {
-    navigationMenu("choseCaracter", choseCaracterScreen, "choseCaracter");
-  },
-  warrior,
-  mage,
-  cancel
+   () => {
+      navigationMenu('choseCaracter', choseCaracterScreen, 'choseCaracter');
+   },
+   warrior,
+   mage,
+   cancel
 );
 
 /**
@@ -78,13 +78,13 @@ activateHovering(
  */
 
 choseMenu(() => {
-  navigationMenu("choseCaracter", choseCaracterScreen, "choseCaracter");
+   navigationMenu('choseCaracter', choseCaracterScreen, 'choseCaracter');
 }, warrior);
 
 choseMenu(() => {
-  navigationMenu("choseCaracter", choseCaracterScreen, "choseCaracter");
+   navigationMenu('choseCaracter', choseCaracterScreen, 'choseCaracter');
 }, mage);
 
 choseMenu(() => {
-  navigationMenu("choseCaracter", playScreen, "Ingame");
+   navigationMenu('choseCaracter', playScreen, 'Ingame');
 }, cancel);

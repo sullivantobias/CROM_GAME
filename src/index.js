@@ -1,5 +1,5 @@
 // import { makeWarrior } from "./createCaracter";
-import "./createFunctions/createMenu";
+import './createFunctions/createMenu';
 
 /*
 
@@ -8,5 +8,5 @@ createWarrior.addEventListener("click", function() {
   // Creating The Warrior //
   makeWarrior();
 });
- 
+
 */
