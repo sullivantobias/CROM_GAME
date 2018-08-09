@@ -1,5 +1,6 @@
 {
    "Name": "Warrior",
    "Life": 120,
-   "Prot": 20
+   "Prot": 20,
+   "Resume": "Lorem Ipsum"
 }

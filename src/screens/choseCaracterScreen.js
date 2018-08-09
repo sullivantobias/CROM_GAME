@@ -8,6 +8,8 @@ import {activateHovering} from '../designFunctions/activateHovering';
 import {navigationMenu} from './navigationMenu/navigationMenu';
 import {choseMenu} from '../designFunctions/activateClickForMenu';
 import {playScreen} from './playScreen';
+import {warriorScreen} from './classesScreen/warriorScreen';
+import {mageScreen} from './classesScreen/mageScreen';
 
 /**
  * Warrior
@@ -78,11 +80,11 @@ activateHovering(
  */
 
 choseMenu(() => {
-   navigationMenu('choseCaracter', choseCaracterScreen, 'choseCaracter');
+   navigationMenu('choseCaracter', warriorScreen, 'warrioScreen');
 }, warrior);
 
 choseMenu(() => {
-   navigationMenu('choseCaracter', choseCaracterScreen, 'choseCaracter');
+   navigationMenu('choseCaracter', mageScreen, 'mageScreen');
 }, mage);
 
 choseMenu(() => {
