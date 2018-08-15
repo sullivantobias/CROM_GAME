@@ -4,7 +4,7 @@ I love playing games.
 
 Create one ? Why not.
 
-I think this will be one of the big project that i want to make.
+I think this will be one of big projects that i want to make.
 
 # What kind of game ?
 
