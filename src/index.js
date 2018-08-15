@@ -1,12 +1,9 @@
-// import { makeWarrior } from "./createCaracter";
-import './createFunctions/createMenu';
+/**
+ * import main canvas
+ */
+import './gamesrc/createFunctions/createMenu';
 
-/*
-
-const createWarrior = document.querySelector("#warrior");
-createWarrior.addEventListener("click", function() {
-  // Creating The Warrior //
-  makeWarrior();
-});
-
-*/
+/**
+ * import test canvas
+ */
+import './gametest/canvas/canvasDraw';

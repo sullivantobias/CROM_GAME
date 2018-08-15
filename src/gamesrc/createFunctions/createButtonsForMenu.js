@@ -1,4 +1,4 @@
-import {ctx} from './createCanvas';
+import {ctx, canvas} from './createCanvas';
 
 /**
  *
@@ -26,10 +26,21 @@ export const createButtons = (x, y, width, height, text, backgroundColor) => {
 };
 
 export const coorButtons = (e, object) => {
+   const mouse = {
+      x: 0,
+      y: 0,
+   };
+
+   const bounds = canvas.getBoundingClientRect();
+   // get the mouse coordinates, subtract the canvas top left and any scrolling
+   mouse.x = e.pageX - bounds.left - scrollX;
+   mouse.y = e.pageY - bounds.top - scrollY;
+
    return (
-      e.clientX > object.x &&
-      e.clientX < object.x + object.width + 14 &&
-      (e.clientY > object.y && e.clientY < object.y + (object.height + 14))
+      mouse.x > object.x &&
+      mouse.x < object.x + object.width &&
+      mouse.y > object.y &&
+      mouse.y < object.y + object.height
    );
 };
 
