@@ -22,5 +22,6 @@ export const warriorScreen = () => {
    STATE.setTitle('warriorScreen');
 
    /** draw warrior content */
-   warrior.content;
+   warrior.getContent;
+   warrior.getSprite;
 };

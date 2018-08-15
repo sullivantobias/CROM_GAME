@@ -22,5 +22,6 @@ export const mageScreen = () => {
    STATE.setTitle('mageScreen');
 
    /** draw warrior content */
-   mage.content;
+   mage.getContent;
+   mage.getSprite;
 };

@@ -15,5 +15,16 @@ export class Mage extends Caracters {
       this.life = Mages.Life;
       this.prot = Mages.Prot;
       this.resume = Mages.Resume;
+      this.sprite = {
+         image: Mages.Sprite,
+         sx: 24,
+         sy: 24,
+         sWidth: 102,
+         sHeight: 120,
+         dx: 400,
+         dy: 200,
+         dWidth: 96,
+         dHeight: 144,
+      };
    }
 }

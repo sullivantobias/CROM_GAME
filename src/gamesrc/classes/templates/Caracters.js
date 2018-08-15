@@ -21,6 +21,17 @@ export class Caracters {
       this.life = 0;
       this.prot = 0;
       this.resume = '';
+      this.sprite = {
+         image: '/src/assets/sprite/warrior/warriorSprite.png',
+         sx: 0,
+         sy: 0,
+         sWidth: 0,
+         sHeight: 0,
+         dx: 0,
+         dy: 0,
+         dwidth: 0,
+         dHeight: 0,
+      };
    }
 
    /**
@@ -69,24 +80,44 @@ export class Caracters {
       ctx.fillText(title, position, 50);
 
       /**
-       * frame
+       * stats frame
        */
-      const frame = {
+      const statsFrame = {
          x: 20,
          y: 20,
          width: 200,
          height: 500,
       };
 
-      ctx.rect(frame.x, frame.y, frame.width, frame.height);
+      /**
+       * sprite frame
+       */
+      const spriteFrame = {
+         x: 300,
+         y: 100,
+         width: 300,
+         height: 300,
+      };
+
+      /** stats frame draw  */
+      ctx.rect(statsFrame.x, statsFrame.y, statsFrame.width, statsFrame.height);
+      ctx.stroke();
+
+      /** sprite frame draw  */
+      ctx.rect(
+         spriteFrame.x,
+         spriteFrame.y,
+         spriteFrame.width,
+         spriteFrame.height
+      );
       ctx.stroke();
       /**
        * contentFrame
        */
 
-      const contentFrame = {
-         x: frame.width / 2,
-         y: frame.height / 2,
+      const statsAndSprite = {
+         x: statsFrame.width / 2,
+         y: statsFrame.height / 2,
 
          /** array for content */
          content: [`Class: ${name}`, `Life: ${life}`, `Prot: ${prot}`, resume],
@@ -110,21 +141,51 @@ export class Caracters {
                ctx.font = font;
                ctx.fillText(
                   this.content[i],
-                  contentFrame.x - contentFrame.pos(this.content[i]),
-                  contentFrame.y + height
+                  this.x - this.pos(this.content[i]),
+                  this.y + height
                );
             }
          },
       };
 
       /** draw content */
-      contentFrame.draw();
+      statsAndSprite.draw();
+   }
+
+   /**
+    * @method drawContent
+    * @param {String} spritePath
+    * @param {*} spriteInfos
+    */
+   drawStaticSprite(...infos) {
+      let sprite = new Image();
+      sprite.src = infos[0];
+      infos.shift();
+      sprite.onload = () => {
+         ctx.drawImage(sprite, ...infos);
+      };
    }
 
    /**
     * @return {*} this.drawContent()
     */
-   get content() {
+   get getContent() {
       return this.drawContent(this.name, this.life, this.prot, this.resume);
+   }
+   /**
+    * @return {*} this.drawSpriteOnMenu()
+    */
+   get getSprite() {
+      return this.drawStaticSprite(
+         this.sprite.image,
+         this.sprite.sx,
+         this.sprite.sy,
+         this.sprite.sWidth,
+         this.sprite.sHeight,
+         this.sprite.dx,
+         this.sprite.dy,
+         this.sprite.dWidth,
+         this.sprite.dHeight
+      );
    }
 }
