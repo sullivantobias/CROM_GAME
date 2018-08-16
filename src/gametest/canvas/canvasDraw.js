@@ -1,5 +1,6 @@
 import {createCanvas} from './createCanvas';
 import {SpriteAnimation} from '../movingSprite/movingSprite';
+import {Spaceship} from '../movingSprite/spaceshipTest';
 
 createCanvas();
 
@@ -13,3 +14,7 @@ setInterval(() => {
    sprite.drawSprite();
 }, 100);
 */
+
+const ship = new Spaceship();
+
+ship.drawShip();
