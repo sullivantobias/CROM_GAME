@@ -8,7 +8,7 @@ I think this will be one of big projects that i want to make.
 
 # What kind of game ?
 
-This game will be a RPG
+This game will be a rogue-like about space 
 
 # Which Languages to develop this ?
 
