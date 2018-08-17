@@ -3,51 +3,50 @@ import {STATE} from '../const/const';
 import {
    createButtons,
    drawButtons,
+   createPortraits,
+   drawPortraits,
 } from '../createFunctions/createButtonsForMenu';
 import {activateHovering} from '../designFunctions/activateHovering';
 import {navigationMenu} from './navigationMenu/navigationMenu';
 import {choseMenu} from '../designFunctions/activateClickForMenu';
 import {playScreen} from './playScreen';
-import {warriorScreen} from './classesScreen/warriorScreen';
-import {mageScreen} from './classesScreen/mageScreen';
+import {humanScreen} from './classesScreen/humanScreen';
+import {human2Screen} from './classesScreen/human2Screen';
+import {Human} from '../classes/human/human';
+import {Human2} from '../classes/human2/human2';
+
+const human = new Human();
 
 /**
- * Warrior
+ * human
  */
 
-const warrior = createButtons(
-   canvas.width / 2 - 100,
-   canvas.height / 2 - 100,
+const humanButton = createPortraits(
+   canvas.width / 2 - 300,
+   canvas.height / 2 - 200,
    200,
-   50,
-   'Warrior',
-   'white'
+   200
 );
 
+const human2 = new Human2();
+
 /**
- * Mage
+ * human2
  */
 
-const mage = createButtons(
-   canvas.width / 2 - 100,
-   canvas.height / 2 - 25,
+const human2Button = createPortraits(
+   canvas.width / 2 + 100,
+   canvas.height / 2 - 200,
    200,
-   50,
-   'Mage',
-   'white'
+   200
 );
-
-/**
- * Mage
- */
 
 const cancel = createButtons(
    canvas.width / 2 - 100,
    canvas.height / 2 + 50,
    200,
    50,
-   'Cancel',
-   'white'
+   'Cancel'
 );
 
 export const choseCaracterScreen = () => {
@@ -58,34 +57,33 @@ export const choseCaracterScreen = () => {
 
    /** Set State */
    STATE.setTitle('choseCaracter');
+   /** human */
+   drawPortraits(human.portraitSprite, 150, 130, humanButton);
+   /** human2 */
+   drawPortraits(human2.portraitSprite, 550, 130, human2Button);
 
-   drawButtons(warrior, mage, cancel);
+   drawButtons(cancel);
 };
 
 /**
  * Activate Hovering
  */
 
-activateHovering(
-   () => {
-      navigationMenu('choseCaracter', choseCaracterScreen, 'choseCaracter');
-   },
-   warrior,
-   mage,
-   cancel
-);
+activateHovering(() => {
+   navigationMenu('choseCaracter', choseCaracterScreen, 'choseCaracter');
+}, cancel);
 
 /**
  * Activate Click
  */
 
 choseMenu(() => {
-   navigationMenu('choseCaracter', warriorScreen, 'warrioScreen');
-}, warrior);
+   navigationMenu('choseCaracter', humanScreen, 'humanScreen');
+}, humanButton);
 
 choseMenu(() => {
-   navigationMenu('choseCaracter', mageScreen, 'mageScreen');
-}, mage);
+   navigationMenu('choseCaracter', human2Screen, 'human2Screen');
+}, human2Button);
 
 choseMenu(() => {
    navigationMenu('choseCaracter', playScreen, 'Ingame');

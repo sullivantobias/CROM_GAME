@@ -160,6 +160,7 @@ export class Caracters {
    drawStaticSprite(...infos) {
       let sprite = new Image();
       sprite.src = infos[0];
+
       infos.shift();
       sprite.onload = () => {
          ctx.drawImage(sprite, ...infos);
@@ -175,7 +176,7 @@ export class Caracters {
    /**
     * @return {*} this.drawSpriteOnMenu()
     */
-   get getSprite() {
+   get getDrawStaticSprite() {
       return this.drawStaticSprite(
          this.sprite.image,
          this.sprite.sx,
@@ -187,5 +188,12 @@ export class Caracters {
          this.sprite.dWidth,
          this.sprite.dHeight
       );
+   }
+
+   /**
+    * @return {object} this.sprite
+    */
+   get portraitSprite() {
+      return this.sprite;
    }
 }
