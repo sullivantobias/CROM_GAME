@@ -1,0 +1,7 @@
+{
+  "Name": "Human2",
+  "Life": 80,
+  "Prot": 5,
+  "Resume": "Lorem Ipsum",
+  "Sprite": "src/assets/sprite/human2/human2.png"
+}

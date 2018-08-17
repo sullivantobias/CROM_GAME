@@ -1,7 +1,0 @@
-{
-  "Name": "Mage",
-  "Life": 80,
-  "Prot": 5,
-  "Resume": "Lorem Ipsum",
-  "Sprite": "src/assets/sprite/mage/mageSprite.png"
-}

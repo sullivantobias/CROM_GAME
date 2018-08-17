@@ -1,27 +1,27 @@
 import {createCanvas} from '../../createFunctions/createCanvas';
 import {STATE} from '../../const/const';
-import {Warrior} from '../../classes/warrior/warrior';
+import {Human} from '../../classes/human/human';
 
 /**
  * class instance
  */
 
-const warrior = new Warrior();
+const human = new Human();
 
 /**
  * warrior
  */
 
-export const warriorScreen = () => {
+export const humanScreen = () => {
    /**
     * remove old components
     */
    createCanvas();
 
    /** set state */
-   STATE.setTitle('warriorScreen');
+   STATE.setTitle('humanScreen');
 
    /** draw warrior content */
-   warrior.getContent;
-   warrior.getSprite;
+   human.getContent;
+   human.getDrawStaticSprite;
 };

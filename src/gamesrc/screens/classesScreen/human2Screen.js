@@ -1,27 +1,27 @@
 import {createCanvas} from '../../createFunctions/createCanvas';
 import {STATE} from '../../const/const';
-import {Mage} from '../../classes/mage/mage';
+import {Human2} from '../../classes/human2/human2';
 
 /**
  * class instance
  */
 
-const mage = new Mage();
+const human2 = new Human2();
 
 /**
  * warrior
  */
 
-export const mageScreen = () => {
+export const human2Screen = () => {
    /**
     * remove old components
     */
    createCanvas();
 
    /** set state */
-   STATE.setTitle('mageScreen');
+   STATE.setTitle('human2Screen');
 
    /** draw warrior content */
-   mage.getContent;
-   mage.getSprite;
+   human2.getContent;
+   human2.getDrawStaticSprite;
 };
